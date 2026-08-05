@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight, Bed, Bath, Ruler } from "lucide-react";
 import { useState, useEffect, useRef, useCallback } from "react";
+import { asset } from "@/lib/utils";
 
 /**
  * DESIGN PHILOSOPHY: Cinematic Luxury Minimalism
@@ -26,61 +27,61 @@ interface Property {
 }
 
 const properties: Property[] = [
-  { id: 1, title: "Sunset Cliff Villa",      location: "Coastal Heights",    price: "$8.5M",  beds: 5, baths: 6, sqft: "12,500", image: "/villa-exterior.jpg",    featured: true },
-  { id: 2, title: "Metropolitan Penthouse",  location: "Downtown Skyline",   price: "$6.2M",  beds: 4, baths: 5, sqft: "8,900",  image: "/penthouse-interior.jpg" },
-  { id: 3, title: "Moonlit Estate",          location: "Private Gardens",    price: "$7.8M",  beds: 6, baths: 7, sqft: "15,200", image: "/infinity-pool.jpg"      },
-  { id: 4, title: "Azure Sky Residence",     location: "Beachfront Drive",   price: "$9.1M",  beds: 5, baths: 5, sqft: "11,800", image: "/rooftop-lounge.jpg"     },
-  { id: 5, title: "The Grand Atelier",       location: "Arts Quarter",       price: "$5.4M",  beds: 3, baths: 4, sqft: "7,200",  image: "/living-space.jpg"       },
-  { id: 6, title: "Heritage Manor",          location: "Old Quarter",        price: "$12M",   beds: 8, baths: 9, sqft: "22,000", image: "/office-interior.jpg"    },
-  { id: 7, title: "Skyline Aerie",           location: "Midtown Heights",    price: "$7.3M",  beds: 4, baths: 4, sqft: "9,500",  image: "/mumbai-skyline.jpg"     },
-  { id: 8, title: "Dusk Pavilion",           location: "Lakefront Reserve",  price: "$10.5M", beds: 6, baths: 7, sqft: "18,000", image: "/skyline-drone.jpg"      },
+  { id: 1, title: "Sunset Cliff Villa",      location: "Coastal Heights",    price: "$8.5M",  beds: 5, baths: 6, sqft: "12,500", image: asset("/villa-exterior.jpg"),    featured: true },
+  { id: 2, title: "Metropolitan Penthouse",  location: "Downtown Skyline",   price: "$6.2M",  beds: 4, baths: 5, sqft: "8,900",  image: asset("/penthouse-interior.jpg") },
+  { id: 3, title: "Moonlit Estate",          location: "Private Gardens",    price: "$7.8M",  beds: 6, baths: 7, sqft: "15,200", image: asset("/infinity-pool.jpg")      },
+  { id: 4, title: "Azure Sky Residence",     location: "Beachfront Drive",   price: "$9.1M",  beds: 5, baths: 5, sqft: "11,800", image: asset("/rooftop-lounge.jpg")     },
+  { id: 5, title: "The Grand Atelier",       location: "Arts Quarter",       price: "$5.4M",  beds: 3, baths: 4, sqft: "7,200",  image: asset("/living-space.jpg")       },
+  { id: 6, title: "Heritage Manor",          location: "Old Quarter",        price: "$12M",   beds: 8, baths: 9, sqft: "22,000", image: asset("/office-interior.jpg")    },
+  { id: 7, title: "Skyline Aerie",           location: "Midtown Heights",    price: "$7.3M",  beds: 4, baths: 4, sqft: "9,500",  image: asset("/mumbai-skyline.jpg")     },
+  { id: 8, title: "Dusk Pavilion",           location: "Lakefront Reserve",  price: "$10.5M", beds: 6, baths: 7, sqft: "18,000", image: asset("/skyline-drone.jpg")      },
 ];
 
 const heroSlides = [
   {
-    image: "/skyline-drone.jpg",
+    image: asset("/skyline-drone.jpg"),
     label: "Urban Skyline",
     title: "Own the Address Everyone Remembers",
     description: "India's premier real estate mandate firm — exclusively representing the finest properties for discerning sellers",
   },
   {
-    image: "/villa-exterior.jpg",
+    image: asset("/villa-exterior.jpg"),
     label: "Exclusive Mandate",
     title: "Not Just Built to Live In — Built to Belong",
     description: "We hold the mandate so your property reaches only the most serious, qualified buyers",
   },
   {
-    image: "/penthouse-interior.jpg",
+    image: asset("/penthouse-interior.jpg"),
     label: "Mandate Representation",
     title: "For Those Who Expect More Than Four Walls",
     description: "Every mandate we accept is handled with absolute discretion and uncompromising expertise",
   },
   {
-    image: "/infinity-pool.jpg",
+    image: asset("/infinity-pool.jpg"),
     label: "Private Transactions",
     title: "Where Ambition Finds Its Home",
     description: "We don't just list properties — we represent them, protect them, and close them right",
   },
   {
-    image: "/rooftop-lounge.jpg",
+    image: asset("/rooftop-lounge.jpg"),
     label: "Curated Portfolio",
     title: "Spaces That Speak Your Success",
     description: "A carefully curated portfolio of mandate properties across India's most coveted addresses",
   },
   {
-    image: "/living-space.jpg",
+    image: asset("/living-space.jpg"),
     label: "Seller Representation",
     title: "Live Above Ordinary",
     description: "Your property deserves a firm that fights for its true value — that firm is Maison Exclusive",
   },
   {
-    image: "/office-interior.jpg",
+    image: asset("/office-interior.jpg"),
     label: "Premium Advisory",
     title: "Every Corner Designed Around Your Life",
     description: "Strategic counsel, market insight, and mandate execution from India's luxury real estate specialists",
   },
   {
-    image: "/mumbai-skyline.jpg",
+    image: asset("/mumbai-skyline.jpg"),
     label: "City of Dreams",
     title: "The Future of Living Starts Here",
     description: "Trusted mandates across Mumbai, Delhi, Bangalore and India's most prestigious micro-markets",
@@ -88,11 +89,11 @@ const heroSlides = [
 ];
 
 const services = [
-  { id: 1, num: "01", title: "Housing & Commercial",  subtitle: "Property Solutions",     image: "/cover1.png",   bg: "/SERVICE1.png",           tagline: "Smart Solutions. Stronger Investments. Better Communities.",  back: "We source, evaluate, and represent premium housing and commercial mandates across India's tier-1 cities with full exclusivity." },
-  { id: 2, num: "02", title: "Market Entry &",         subtitle: "Asset Management",       image: "/cover1.png",  bg: "/SERVICE2.png",            tagline: "Strategic Entry. Efficient Management. Maximum Value.",        back: "We guide clients through market entry strategy and manage real estate assets for maximum long-term return." },
-  { id: 3, num: "03", title: "Outreach &",             subtitle: "Marketing Consultation", image: "/cover1.png",  bg: "/SERVICE3.png",            tagline: "Smart Outreach. Stronger Branding. Higher Impact.",            back: "Our dedicated marketing arm crafts bespoke outreach campaigns that place your property in front of the right buyers." },
-  { id: 4, num: "04", title: "Plot & Land",            subtitle: "Services",               image: "/cover1.png",  bg: "/SERVICE4.png",            tagline: "Right Land. Right Value. Right Future.",                      back: "From agricultural plots to development land, we identify, verify, and negotiate land mandates across every geography." },
-  { id: 5, num: "05", title: "Financial",              subtitle: "Consultation Services",  image: "/cover1.png",  bg: "/SERVICE5.png",            tagline: "Right Advice. Better Finance. Stronger Growth.",              back: "Our financial advisory team structures deals, arranges financing, and ensures every mandate closes with optimal returns." },
+  { id: 1, num: "01", title: "Housing & Commercial",  subtitle: "Property Solutions",     image: asset("/cover1.png"),   bg: asset("/SERVICE1.png"),           tagline: "Smart Solutions. Stronger Investments. Better Communities.",  back: "We source, evaluate, and represent premium housing and commercial mandates across India's tier-1 cities with full exclusivity." },
+  { id: 2, num: "02", title: "Market Entry &",         subtitle: "Asset Management",       image: asset("/cover1.png"),  bg: asset("/SERVICE2.png"),            tagline: "Strategic Entry. Efficient Management. Maximum Value.",        back: "We guide clients through market entry strategy and manage real estate assets for maximum long-term return." },
+  { id: 3, num: "03", title: "Outreach &",             subtitle: "Marketing Consultation", image: asset("/cover1.png"),  bg: asset("/SERVICE3.png"),            tagline: "Smart Outreach. Stronger Branding. Higher Impact.",            back: "Our dedicated marketing arm crafts bespoke outreach campaigns that place your property in front of the right buyers." },
+  { id: 4, num: "04", title: "Plot & Land",            subtitle: "Services",               image: asset("/cover1.png"),  bg: asset("/SERVICE4.png"),            tagline: "Right Land. Right Value. Right Future.",                      back: "From agricultural plots to development land, we identify, verify, and negotiate land mandates across every geography." },
+  { id: 5, num: "05", title: "Financial",              subtitle: "Consultation Services",  image: asset("/cover1.png"),  bg: asset("/SERVICE5.png"),            tagline: "Right Advice. Better Finance. Stronger Growth.",              back: "Our financial advisory team structures deals, arranges financing, and ensures every mandate closes with optimal returns." },
 ];
 
 export default function Home() {
@@ -226,7 +227,7 @@ export default function Home() {
 
         {/* Hero Content — text straddling the circle's right edge */}
         <img
-          src="/ire-logo-gold-transparent.png"
+          src={asset("/ire-logo-gold-transparent.png")}
           alt=""
           aria-hidden="true"
           className="absolute pointer-events-none z-[6]"
@@ -505,8 +506,8 @@ export default function Home() {
       {/* About Section */}
       <section id="about" className="about-section">
         <div className="about-media">
-          <img src="/penthouse-interior.jpg" alt="" className="about-img about-img-primary" />
-          <img src="/mumbai-skyline.jpg" alt="" className="about-img about-img-secondary" />
+          <img src={asset("/penthouse-interior.jpg")} alt="" className="about-img about-img-primary" />
+          <img src={asset("/mumbai-skyline.jpg")} alt="" className="about-img about-img-secondary" />
           <div className="about-media-frame" />
           <div className="about-media-badge">
             <span className="about-media-badge-num">A51700029389</span>
@@ -563,7 +564,7 @@ export default function Home() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url('/manus-storage/luxury_lifestyle_ebd53e12.png')`,
+            backgroundImage: `url('${asset("/skyline-drone.jpg")}')`,
             opacity: 0.2,
           }}
         />
@@ -592,7 +593,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <img src="/ire-logo-gold-transparent.png" alt="IRE Homes" className="h-8 w-auto" />
+                <img src={asset("/ire-logo-gold-transparent.png")} alt="IRE Homes" className="h-8 w-auto" />
               </div>
               <p className="text-foreground/60 text-sm">
                 India's premier luxury real estate mandate firm — exclusively representing sellers of exceptional properties

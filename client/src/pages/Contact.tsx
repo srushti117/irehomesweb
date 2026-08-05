@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import { ChevronRight, MapPin, Phone, Mail, Globe, Loader2, Clock } from "lucide-react";
+import { asset } from "@/lib/utils";
 
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
@@ -32,7 +33,7 @@ export default function Contact() {
   return (
     <div className="contact-page min-h-screen bg-background text-foreground flex flex-col">
       <div className="contact-hero-bg">
-        <img src="/office-interior.jpg" alt="" className="contact-hero-img" />
+        <img src={asset("/office-interior.jpg")} alt="" className="contact-hero-img" />
         <div className="contact-hero-overlay" />
       </div>
 
@@ -58,7 +59,7 @@ export default function Contact() {
             <div className="lg:col-span-2 space-y-6 contact-fade" style={{ animationDelay: "0.1s" }}>
 
               <div className="contact-brand-row">
-                <img src="/ire-logo-gold-transparent.png" alt="IRE Homes" className="h-10 w-auto" />
+                <img src={asset("/ire-logo-gold-transparent.png")} alt="IRE Homes" className="h-10 w-auto" />
                 <p style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.3rem", fontWeight: 700, color: "var(--gold)", letterSpacing: "0.08em" }}>
                   IRE HOMES PVT. LTD.
                 </p>

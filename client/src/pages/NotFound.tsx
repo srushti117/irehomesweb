@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import { asset } from "@/lib/utils";
 
 const quickLinks = [
   { label: "Home", href: "/" },
@@ -10,7 +11,7 @@ export default function NotFound() {
   return (
     <div className="notfound-page min-h-screen w-full flex flex-col items-center justify-center bg-background text-foreground">
       <a href="/" className="notfound-brand">
-        <img src="/ire-logo-gold-transparent.png" alt="IRE Homes" className="notfound-logo" />
+        <img src={asset("/ire-logo-gold-transparent.png")} alt="IRE Homes" className="notfound-logo" />
       </a>
 
       <div className="notfound-hero">
