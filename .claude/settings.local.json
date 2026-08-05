@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(cd \"c:\\\\Users\\\\IRE Homes pvt ltd\\\\Desktop\\\\maison_exclusive\"; Start-Process powershell -ArgumentList \"-NoProfile -Command `\"cd 'c:\\\\Users\\\\IRE Homes pvt ltd\\\\Desktop\\\\maison_exclusive'; & '$env:APPDATA\\\\npm\\\\pnpm.ps1' dev`\"\" -WindowStyle Normal; Start-Sleep -Seconds 5; Write-Host \"Dev server started\")",
+      "Read(//c/Users/IRE Homes pvt ltd/Desktop/**)"
+    ]
+  }
+}

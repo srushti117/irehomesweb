@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/IRE Homes pvt ltd/Downloads/**)",
+      "Read(//c/Users/IRE Homes pvt ltd/Pictures/**)"
+    ]
+  }
+}
