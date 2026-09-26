@@ -686,98 +686,122 @@
     margin: 1.25rem auto;
   }
 
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: clamp(1rem, 1.8vw, 1.5rem);
-  }
-
-  .service-card {
+  .services-editorial-list {
     display: flex;
     flex-direction: column;
-    border-radius: 16px;
-    overflow: hidden;
-    background: var(--surface-raised);
-    border: 1px solid var(--border-subtle);
-    box-shadow: 0 16px 40px var(--shadow-color);
-    transition: transform 0.4s var(--ease-out), border-color 0.4s ease, box-shadow 0.4s ease;
+    gap: clamp(2.5rem, 6vw, 4.5rem);
   }
 
-  .service-card:hover {
-    transform: translateY(-6px);
-    border-color: rgb(var(--gold-rgb) / 0.45);
+  .service-row {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
   }
 
-  .service-card-media {
+  .service-row-reversed {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  }
+
+  .service-row-reversed .service-row-media {
+    order: 2;
+  }
+
+  .service-row-reversed .service-row-body {
+    order: 1;
+  }
+
+  .service-row-media {
     position: relative;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 11;
+    border-radius: 20px;
+    overflow: hidden;
   }
 
-  .service-card-img {
+  .service-row-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.6s var(--ease-out);
+    transition: transform 0.7s var(--ease-out);
   }
 
-  .service-card:hover .service-card-img {
-    transform: scale(1.06);
+  .service-row:hover .service-row-img {
+    transform: scale(1.05);
   }
 
-  /* Photo-only scrim (bottom edge, for the number label) — invariant
-     dark, same convention as the fan-carousel card labels. */
-  .service-card-scrim {
+  .service-row-frame {
     position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgb(var(--overlay-scrim-tint) / 0.75) 0%, transparent 55%);
+    inset: 14px;
+    border: 1px solid rgb(var(--gold-rgb) / 0.55);
+    border-radius: 12px;
     pointer-events: none;
+    transition: inset 0.5s var(--ease-out);
   }
 
-  .service-card-num {
-    position: absolute;
-    bottom: 0.75rem;
-    left: 1rem;
-    font-family: var(--font-metrik);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.28em;
-    color: var(--gold);
+  .service-row:hover .service-row-frame {
+    inset: 8px;
   }
 
-  .service-card-body {
+  .service-row-body {
+    position: relative;
     display: flex;
     flex-direction: column;
-    flex: 1;
-    padding: 1.5rem;
   }
 
-  .service-card-title {
+  .service-row-num {
     font-family: var(--font-ginger);
-    font-size: 1.25rem;
+    font-size: clamp(3.5rem, 7vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px rgb(var(--gold-rgb) / 0.35);
+    margin-bottom: -0.5rem;
+  }
+
+  .service-row-title {
+    font-family: var(--font-ginger);
+    font-size: clamp(1.5rem, 2.4vw, 2rem);
     font-weight: 700;
     color: var(--text-primary);
-    line-height: 1.25;
-    margin: 0 0 0.6rem;
+    line-height: 1.2;
+    margin: 0;
   }
 
-  .service-card-tagline {
+  .service-row-divider {
+    width: 64px;
+    margin: 1.1rem 0;
+  }
+
+  .service-row-tagline {
     font-family: var(--font-metrik);
-    font-size: 0.85rem;
-    line-height: 1.6;
+    font-size: 0.95rem;
+    line-height: 1.7;
     color: var(--text-secondary);
     margin: 0;
   }
 
-  .service-card-back {
+  .service-row-back {
     font-family: var(--font-metrik);
-    font-size: 0.85rem;
-    line-height: 1.65;
+    font-size: 0.9rem;
+    line-height: 1.7;
     color: var(--text-secondary);
-    margin: 0.9rem 0 0;
-    padding-top: 0.9rem;
+    margin: 1rem 0 0;
+    padding-top: 1rem;
     border-top: 1px solid var(--border-subtle);
     animation: fadeInUp 0.4s var(--ease-out) both;
+  }
+
+  @media (max-width: 860px) {
+    .service-row,
+    .service-row-reversed {
+      grid-template-columns: 1fr;
+    }
+
+    .service-row-reversed .service-row-media,
+    .service-row-reversed .service-row-body {
+      order: initial;
+    }
   }
 
   .service-card-toggle {

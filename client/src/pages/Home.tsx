@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import useEmblaCarousel from "embla-carousel-react";
-import { ChevronLeft, ChevronRight, Bed, Bath, Ruler } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { asset } from "@/lib/utils";
 
@@ -18,79 +18,75 @@ interface Property {
   id: number;
   title: string;
   location: string;
-  price: string;
-  beds: number;
-  baths: number;
-  sqft: string;
+  status: "Ongoing" | "Delivered";
   image: string;
   featured?: boolean;
 }
 
 const properties: Property[] = [
-  { id: 1, title: "Sunset Cliff Villa",      location: "Coastal Heights",    price: "$8.5M",  beds: 5, baths: 6, sqft: "12,500", image: asset("/villa-exterior.jpg"),    featured: true },
-  { id: 2, title: "Metropolitan Penthouse",  location: "Downtown Skyline",   price: "$6.2M",  beds: 4, baths: 5, sqft: "8,900",  image: asset("/penthouse-interior.jpg") },
-  { id: 3, title: "Moonlit Estate",          location: "Private Gardens",    price: "$7.8M",  beds: 6, baths: 7, sqft: "15,200", image: asset("/infinity-pool.jpg")      },
-  { id: 4, title: "Azure Sky Residence",     location: "Beachfront Drive",   price: "$9.1M",  beds: 5, baths: 5, sqft: "11,800", image: asset("/rooftop-lounge.jpg")     },
-  { id: 5, title: "The Grand Atelier",       location: "Arts Quarter",       price: "$5.4M",  beds: 3, baths: 4, sqft: "7,200",  image: asset("/living-space.jpg")       },
-  { id: 6, title: "Heritage Manor",          location: "Old Quarter",        price: "$12M",   beds: 8, baths: 9, sqft: "22,000", image: asset("/office-interior.jpg")    },
-  { id: 7, title: "Skyline Aerie",           location: "Midtown Heights",    price: "$7.3M",  beds: 4, baths: 4, sqft: "9,500",  image: asset("/mumbai-skyline.jpg")     },
-  { id: 8, title: "Dusk Pavilion",           location: "Lakefront Reserve",  price: "$10.5M", beds: 6, baths: 7, sqft: "18,000", image: asset("/skyline-drone.jpg")      },
+  { id: 1,  title: "Sarvoday Marvel",                        location: "Kalyan (W)",                status: "Ongoing",   image: asset("/projects/sarvoday-marvel.png"),            featured: true },
+  { id: 2,  title: "Haware Jackpot",                          location: "Thane, Ghodbunder Road",    status: "Ongoing",   image: asset("/projects/haware-jackpot.jpg") },
+  { id: 3,  title: "Haware Spectrum",                         location: "Thane, Ghodbunder Road",    status: "Ongoing",   image: asset("/projects/haware-spectrum.jpg") },
+  { id: 6,  title: "Bhagwati Belmonte",                       location: "Kasarvadavali, Thane",      status: "Delivered", image: asset("/projects/bhagwati-belmonte.png") },
+  { id: 7,  title: "KIPL Morya Phase 1 & 2",                  location: "Kasarvadavali, Thane",      status: "Delivered", image: asset("/projects/kipl-morya.jpg") },
+  { id: 9,  title: "Sai Heights",                             location: "Kalyan (E)",                status: "Delivered", image: asset("/projects/sai-heights.jpg") },
+  { id: 13, title: "AK Hitec Prime Rose",                     location: "Pushpak Nagar",              status: "Delivered", image: asset("/projects/ak-hitec-prime-rose.jpg") },
 ];
 
 const heroSlides = [
   {
     image: asset("/skyline-drone.jpg"),
-    label: "Urban Skyline",
-    title: "Own the Address Everyone Remembers",
-    description: "India's premier real estate mandate firm — exclusively representing the finest properties for discerning sellers",
+    label: "Customer First",
+    title: "Your Needs Come Before Anything Else",
+    description: "We put customers first, building every mandate around what truly matters to you",
   },
   {
     image: asset("/villa-exterior.jpg"),
-    label: "Exclusive Mandate",
-    title: "Not Just Built to Live In — Built to Belong",
-    description: "We hold the mandate so your property reaches only the most serious, qualified buyers",
+    label: "Client Trust",
+    title: "A Firm That Listens Before It Lists",
+    description: "Your goals shape every decision we make, because putting customers first is how we work, not just what we say",
   },
   {
     image: asset("/penthouse-interior.jpg"),
-    label: "Mandate Representation",
-    title: "For Those Who Expect More Than Four Walls",
-    description: "Every mandate we accept is handled with absolute discretion and uncompromising expertise",
+    label: "Personal Service",
+    title: "Service Built Around You",
+    description: "From the first conversation to the final signature, your priorities guide every step we take",
   },
   {
     image: asset("/infinity-pool.jpg"),
-    label: "Private Transactions",
-    title: "Where Ambition Finds Its Home",
-    description: "We don't just list properties — we represent them, protect them, and close them right",
+    label: "Earned Trust",
+    title: "Trust Earned, Customer by Customer",
+    description: "We measure success by how well we serve you, not only by the deals we close",
   },
   {
     image: asset("/rooftop-lounge.jpg"),
-    label: "Curated Portfolio",
-    title: "Spaces That Speak Your Success",
-    description: "A carefully curated portfolio of mandate properties across India's most coveted addresses",
+    label: "Honest Guidance",
+    title: "Honest Advice, Every Time",
+    description: "We tell you what you need to hear, not just what is easy to say, because your trust matters more than any single deal",
   },
   {
     image: asset("/living-space.jpg"),
-    label: "Seller Representation",
-    title: "Live Above Ordinary",
-    description: "Your property deserves a firm that fights for its true value — that firm is Maison Exclusive",
+    label: "Your Priorities",
+    title: "Your Property, Your Terms",
+    description: "Every mandate is shaped around your goals, your timeline, and your comfort",
   },
   {
     image: asset("/office-interior.jpg"),
-    label: "Premium Advisory",
-    title: "Every Corner Designed Around Your Life",
-    description: "Strategic counsel, market insight, and mandate execution from India's luxury real estate specialists",
+    label: "Dedicated Support",
+    title: "Dedicated to You, Not Just the Deal",
+    description: "Our team stays close through every stage, because a satisfied customer is our real measure of success",
   },
   {
     image: asset("/mumbai-skyline.jpg"),
-    label: "City of Dreams",
-    title: "The Future of Living Starts Here",
-    description: "Trusted mandates across Mumbai, Delhi, Bangalore and India's most prestigious micro-markets",
+    label: "Our Promise",
+    title: "Putting Customers First, Every Single Time",
+    description: "This is not just how we describe ourselves, it is the standard we hold ourselves to",
   },
 ];
 
 const services = [
-  { id: 1, num: "01", title: "Housing & Commercial",  subtitle: "Property Solutions",     image: asset("/cover1.png"),   bg: asset("/SERVICE1.png"),           tagline: "Smart Solutions. Stronger Investments. Better Communities.",  back: "We source, evaluate, and represent premium housing and commercial mandates across India's tier-1 cities with full exclusivity." },
-  { id: 2, num: "02", title: "Market Entry &",         subtitle: "Asset Management",       image: asset("/cover1.png"),  bg: asset("/SERVICE2.png"),            tagline: "Strategic Entry. Efficient Management. Maximum Value.",        back: "We guide clients through market entry strategy and manage real estate assets for maximum long-term return." },
+  { id: 1, num: "01", title: "Housing & Commercial",  subtitle: "Property Solutions",     image: asset("/cover1.png"),   bg: asset("/SERVICE1.png"),           tagline: "Smart Solutions. Stronger Investments. Better Communities.",  back: "We source, evaluate, and represent premium housing and commercial mandates across India's tier 1 cities with full exclusivity." },
+  { id: 2, num: "02", title: "Market Entry &",         subtitle: "Asset Management",       image: asset("/cover1.png"),  bg: asset("/SERVICE2.png"),            tagline: "Strategic Entry. Efficient Management. Maximum Value.",        back: "We guide clients through market entry strategy and manage real estate assets for maximum long term return." },
   { id: 3, num: "03", title: "Outreach &",             subtitle: "Marketing Consultation", image: asset("/cover1.png"),  bg: asset("/SERVICE3.png"),            tagline: "Smart Outreach. Stronger Branding. Higher Impact.",            back: "Our dedicated marketing arm crafts bespoke outreach campaigns that place your property in front of the right buyers." },
   { id: 4, num: "04", title: "Plot & Land",            subtitle: "Services",               image: asset("/cover1.png"),  bg: asset("/SERVICE4.png"),            tagline: "Right Land. Right Value. Right Future.",                      back: "From agricultural plots to development land, we identify, verify, and negotiate land mandates across every geography." },
   { id: 5, num: "05", title: "Financial",              subtitle: "Consultation Services",  image: asset("/cover1.png"),  bg: asset("/SERVICE5.png"),            tagline: "Right Advice. Better Finance. Stronger Growth.",              back: "Our financial advisory team structures deals, arranges financing, and ensures every mandate closes with optimal returns." },
@@ -376,7 +372,27 @@ export default function Home() {
                     zIndex: 20 - abs,
                   }}
                 >
-                  <img src={property.image} alt={property.title} className="fan-carousel-img" />
+                  {property.image ? (
+                    <img src={property.image} alt={property.title} className="fan-carousel-img" />
+                  ) : (
+                    <div
+                      className="fan-carousel-img"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        background: "linear-gradient(135deg, #1a1a1a, #2a2a2a)",
+                        color: "var(--text-faint)",
+                        fontSize: "0.75rem",
+                        letterSpacing: "0.05em",
+                        textTransform: "uppercase",
+                        textAlign: "center",
+                        padding: "1rem",
+                      }}
+                    >
+                      Photo coming soon
+                    </div>
+                  )}
                   <div className="fan-carousel-gradient" />
 
                   {/* Timer bar on active card */}
@@ -393,6 +409,28 @@ export default function Home() {
                     <span className="fan-carousel-location">{property.location}</span>
                     <strong className="fan-carousel-title">{property.title}</strong>
                   </div>
+
+                  {/* Status badge */}
+                  <span
+                    className="fan-carousel-status"
+                    style={{
+                      position: "absolute",
+                      top: "0.75rem",
+                      right: "0.75rem",
+                      padding: "0.25rem 0.75rem",
+                      borderRadius: "999px",
+                      fontSize: "0.65rem",
+                      letterSpacing: "0.05em",
+                      textTransform: "uppercase",
+                      fontWeight: 600,
+                      color: property.status === "Delivered" ? "#0a0a0a" : "var(--gold)",
+                      background: property.status === "Delivered" ? "var(--gold)" : "rgba(0,0,0,0.55)",
+                      border: property.status === "Delivered" ? "none" : "1px solid var(--gold)",
+                      backdropFilter: "blur(4px)",
+                    }}
+                  >
+                    {property.status}
+                  </span>
                 </button>
               );
             })}
@@ -405,11 +443,8 @@ export default function Home() {
             <p className="fan-detail-location">{properties[projectIndex].location}</p>
             <h3 className="fan-detail-title">{properties[projectIndex].title}</h3>
             <div className="fan-detail-stats">
-              <span><Bed className="inline h-4 w-4 mr-1" />{properties[projectIndex].beds} Beds</span>
-              <span><Bath className="inline h-4 w-4 mr-1" />{properties[projectIndex].baths} Baths</span>
-              <span><Ruler className="inline h-4 w-4 mr-1" />{properties[projectIndex].sqft} sq ft</span>
+              <span>{properties[projectIndex].status} Project</span>
             </div>
-            <p className="fan-detail-price">{properties[projectIndex].price}</p>
             <a href="/contact" className="fan-detail-cta">
               Enquire With IRE Homes <ChevronRight className="inline ml-1 h-4 w-4" />
             </a>
@@ -466,24 +501,29 @@ export default function Home() {
           </h2>
           <div className="luxury-divider services-grid-divider" />
           <p className="text-foreground/70 text-lg">
-            Five disciplines, one mandate — representing every side of a property's journey
+            Five disciplines, one mandate representing every side of a property's journey
           </p>
         </div>
 
-        <div className="services-grid">
+        <div className="services-editorial-list">
           {services.map((svc, idx) => {
             const isOpen = flippedCard === idx;
+            const reversed = idx % 2 === 1;
             return (
-              <div key={svc.id} className={`service-card${isOpen ? " service-card-open" : ""}`}>
-                <div className="service-card-media">
-                  <img src={svc.bg} alt="" className="service-card-img" />
-                  <div className="service-card-scrim" />
-                  <span className="service-card-num">{svc.num}</span>
+              <div
+                key={svc.id}
+                className={`service-row${reversed ? " service-row-reversed" : ""}${isOpen ? " service-row-open" : ""}`}
+              >
+                <div className="service-row-media">
+                  <img src={svc.bg} alt="" className="service-row-img" />
+                  <div className="service-row-frame" />
                 </div>
-                <div className="service-card-body">
-                  <h3 className="service-card-title">{svc.title} {svc.subtitle}</h3>
-                  <p className="service-card-tagline">{svc.tagline}</p>
-                  {isOpen && <p className="service-card-back">{svc.back}</p>}
+                <div className="service-row-body">
+                  <span className="service-row-num">{svc.num}</span>
+                  <h3 className="service-row-title">{svc.title} {svc.subtitle}</h3>
+                  <div className="luxury-divider service-row-divider" />
+                  <p className="service-row-tagline">{svc.tagline}</p>
+                  {isOpen && <p className="service-row-back">{svc.back}</p>}
                   <button
                     type="button"
                     className="service-card-toggle"
@@ -507,7 +547,7 @@ export default function Home() {
       <section id="about" className="about-section">
         <div className="about-media">
           <img src={asset("/penthouse-interior.jpg")} alt="" className="about-img about-img-primary" />
-          <img src={asset("/mumbai-skyline.jpg")} alt="" className="about-img about-img-secondary" />
+          <img src={asset("/living-space-sunset.jpg")} alt="" className="about-img about-img-secondary" />
           <div className="about-media-frame" />
           <div className="about-media-badge">
             <span className="about-media-badge-num">A51700029389</span>
@@ -523,12 +563,12 @@ export default function Home() {
           <div className="luxury-divider about-divider" />
           <p className="about-body">
             IRE Homes represents sellers, not the market. Every property we accept comes under
-            an exclusive mandate — meaning our full attention, network, and negotiating power
+            an exclusive mandate meaning our full attention, network, and negotiating power
             are committed to a single outcome: the right buyer, at the right value, on your terms.
           </p>
           <p className="about-body">
             From Mumbai's skyline to Maharashtra's most coveted addresses, we operate with the
-            discretion of a private office and the reach of a national firm — closing mandates
+            discretion of a private office and the reach of a national firm closing mandates
             others simply can't.
           </p>
 
@@ -546,7 +586,7 @@ export default function Home() {
             <div className="about-pillar">
               <span className="about-pillar-num">03</span>
               <h4 className="about-pillar-title">Results</h4>
-              <p className="about-pillar-body">We close mandates — with strategy, not just listings.</p>
+              <p className="about-pillar-body">We close mandates with strategy, not just listings.</p>
             </div>
           </div>
 
@@ -575,7 +615,7 @@ export default function Home() {
             Ready to Mandate Your Property?
           </h2>
           <p className="text-lg text-foreground/80 mb-8">
-            Speak with our team about an exclusive mandate — discreet, strategic, and results-driven
+            Speak with our team about an exclusive mandate discreet, strategic, and results driven
           </p>
           <Button
             size="lg"
@@ -596,7 +636,7 @@ export default function Home() {
                 <img src={asset("/ire-logo-gold-transparent.png")} alt="IRE Homes" className="h-8 w-auto" />
               </div>
               <p className="text-foreground/60 text-sm">
-                India's premier luxury real estate mandate firm — exclusively representing sellers of exceptional properties
+                India's premier luxury real estate mandate firm exclusively representing sellers of exceptional properties
               </p>
             </div>
             <div>

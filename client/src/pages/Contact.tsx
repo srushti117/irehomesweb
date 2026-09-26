@@ -109,7 +109,7 @@ export default function Contact() {
                     <div className="contact-info-icon"><Clock className="h-5 w-5" style={{ color: "var(--gold)" }} /></div>
                     <div>
                       <p className="contact-info-label">Office Hours</p>
-                      <p className="contact-info-value">Mon – Sat, 10:00 AM – 7:00 PM</p>
+                      <p className="contact-info-value">Mon to Sat, 10:00 AM to 7:00 PM</p>
                     </div>
                   </div>
                 </div>
