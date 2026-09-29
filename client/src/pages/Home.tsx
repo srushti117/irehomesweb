@@ -31,7 +31,7 @@ const properties: Property[] = [
   { id: 3,  title: "Haware Spectrum",                         location: "Thane, Ghodbunder Road",    status: "Ongoing",   image: asset("/projects/haware-spectrum.jpg") },
   { id: 6,  title: "Bhagwati Belmonte",                       location: "Kasarvadavali, Thane",      status: "Delivered", image: asset("/projects/bhagwati-belmonte.jpg"), fit: "contain" },
   { id: 7,  title: "KIPL Morya Phase 1 & 2",                  location: "Kasarvadavali, Thane",      status: "Delivered", image: "" },
-  { id: 9,  title: "Sai Heights",                             location: "Kalyan (E)",                status: "Delivered", image: "" },
+  { id: 9,  title: "Sai Heights",                             location: "Kalyan (E)",                status: "Delivered", image: asset("/projects/sai-heights.jpg") },
   { id: 13, title: "AK Hitec Prime Rose",                     location: "Pushpak Nagar",              status: "Delivered", image: asset("/projects/ak-hitec-prime-rose.jpg") },
 ];
 
