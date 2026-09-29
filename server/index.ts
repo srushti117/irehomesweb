@@ -68,13 +68,16 @@ async function startServer() {
       : path.resolve(__dirname, "..", "dist", "public");
 
   // Vite's build output hashes filenames under /assets, so those are safe
-  // to cache forever; a new build gets new hashes. Everything else (plain
-  // image filenames, index.html) gets a short cache instead.
+  // to cache forever; a new build gets new hashes. Plain-named files (images)
+  // get a short cache. index.html must never be cached client-side — it's
+  // what points browsers at the current hashed bundle, so a cached copy
+  // would keep serving an old build indefinitely.
   app.use("/assets", express.static(path.join(staticPath, "assets"), { maxAge: "1y", immutable: true }));
-  app.use(express.static(staticPath, { maxAge: "1d" }));
+  app.use(express.static(staticPath, { maxAge: "1d", index: false }));
 
   // Handle client-side routing - serve index.html for all routes
   app.get("*", (_req, res) => {
+    res.set("Cache-Control", "no-cache");
     res.sendFile(path.join(staticPath, "index.html"));
   });
 
