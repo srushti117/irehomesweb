@@ -158,21 +158,46 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section - Full Bleed Slideshow, extends behind transparent nav */}
-      <section
-        className="relative w-full h-screen overflow-hidden"
-      >
-        {/* Embla Viewport */}
-        <div ref={heroRef} className="absolute inset-0">
-          <div className="flex h-full">
-            {heroSlides.map((slide, idx) => (
-              <div key={idx} className="relative min-w-full h-full flex-shrink-0">
-                <img
-                  src={slide.image}
-                  alt={slide.label}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#2D302F]/92 via-[#2D302F]/35 to-[#2D302F]/10" />
-              </div>
+      {/* These are wide landscape photos. Forcing them to "cover" a full-height
+          narrow phone screen requires a huge crop (zooms into a thin vertical
+          sliver). So on mobile the photo lives in a shorter band with the text
+          in normal flow below it (its own solid background, no crop fight) —
+          at md+ it switches back to the original full-bleed overlay, where
+          wide viewports don't have this mismatch. */}
+      <section className="relative w-full md:h-screen overflow-hidden">
+        {/* Photo band */}
+        <div className="relative w-full h-[42vh] sm:h-[50vh] md:absolute md:inset-0 md:h-auto overflow-hidden">
+          {/* Embla Viewport */}
+          <div ref={heroRef} className="absolute inset-0">
+            <div className="flex h-full">
+              {heroSlides.map((slide, idx) => (
+                <div key={idx} className="relative min-w-full h-full flex-shrink-0">
+                  <img
+                    src={slide.image}
+                    alt={slide.label}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#2D302F]/92 via-[#2D302F]/35 to-[#2D302F]/10" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Dot Indicators — kept inside the photo band so they always sit on the photo itself */}
+          <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+            {heroSlides.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => { heroApi?.scrollTo(idx); resetAutoplay(); }}
+                aria-label={`Go to slide ${idx + 1}`}
+                className="h-[3px] rounded-full transition-all duration-500"
+                style={{
+                  width: idx === currentSlide ? "2rem" : "0.5rem",
+                  background: idx === currentSlide
+                    ? "var(--gold)"
+                    : "var(--text-on-scrim-faint)",
+                }}
+              />
             ))}
           </div>
         </div>
@@ -257,10 +282,10 @@ export default function Home() {
           }}
         />
 
-        <div className="relative z-10 flex items-end justify-end h-full pb-24">
+        <div className="relative z-10 md:absolute md:inset-0 md:flex md:items-end md:justify-end md:h-full md:pb-24">
           <div
             key={currentSlide}
-            className="animate-fade-in-up px-6 md:pr-20 max-w-full md:max-w-4xl text-right"
+            className="animate-fade-in-up px-6 py-10 md:py-0 md:pr-20 max-w-full md:max-w-4xl text-center md:text-right"
           >
             <h1
               className="font-display font-bold mb-5 leading-[1.1]"
@@ -284,7 +309,7 @@ export default function Home() {
             >
               {heroSlides[currentSlide].description}
             </p>
-            <div className="flex gap-4 justify-end">
+            <div className="flex gap-4 justify-center md:justify-end">
               <Button
                 size="lg"
                 className="font-semibold tracking-widest transition-all duration-500"
@@ -306,24 +331,6 @@ export default function Home() {
               </Button>
             </div>
           </div>
-        </div>
-
-        {/* Dot Indicators */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3">
-          {heroSlides.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => { heroApi?.scrollTo(idx); resetAutoplay(); }}
-              aria-label={`Go to slide ${idx + 1}`}
-              className="h-[3px] rounded-full transition-all duration-500"
-              style={{
-                width: idx === currentSlide ? "2rem" : "0.5rem",
-                background: idx === currentSlide
-                  ? "var(--gold)"
-                  : "var(--text-on-scrim-faint)",
-              }}
-            />
-          ))}
         </div>
       </section>
 
