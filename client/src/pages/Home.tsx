@@ -222,11 +222,12 @@ export default function Home() {
         */}
 
         {/* Hero Content — text straddling the circle's right edge */}
+        {/* Desktop-only decorative badge: sized/positioned for wide screens, hidden on mobile so it doesn't overlap the hero text */}
         <img
           src={asset("/ire-logo-gold-transparent.png")}
           alt=""
           aria-hidden="true"
-          className="absolute pointer-events-none z-[6]"
+          className="absolute pointer-events-none z-[6] hidden md:block"
           style={{
             width: "clamp(145px, 22vw, 255px)",
             top: "50%",
@@ -237,8 +238,9 @@ export default function Home() {
           }}
         />
 
+        {/* Desktop-only decorative rotating frame — oversized relative to mobile viewports, hidden below md */}
         <div
-          className="absolute pointer-events-none z-[5]"
+          className="absolute pointer-events-none z-[5] hidden md:block"
           style={{
             width: "clamp(520px, 88vh, 820px)",
             height: "clamp(520px, 88vh, 820px)",
