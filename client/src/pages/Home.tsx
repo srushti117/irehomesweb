@@ -24,10 +24,10 @@ interface Property {
 }
 
 const properties: Property[] = [
-  { id: 1,  title: "Sarvoday Marvel",                        location: "Kalyan (W)",                status: "Ongoing",   image: asset("/projects/sarvoday-marvel.png"),            featured: true },
+  { id: 1,  title: "Sarvoday Marvel",                        location: "Kalyan (W)",                status: "Ongoing",   image: asset("/projects/sarvoday-marvel.jpg"),            featured: true },
   { id: 2,  title: "Haware Jackpot",                          location: "Thane, Ghodbunder Road",    status: "Ongoing",   image: asset("/projects/haware-jackpot.jpg") },
   { id: 3,  title: "Haware Spectrum",                         location: "Thane, Ghodbunder Road",    status: "Ongoing",   image: asset("/projects/haware-spectrum.jpg") },
-  { id: 6,  title: "Bhagwati Belmonte",                       location: "Kasarvadavali, Thane",      status: "Delivered", image: asset("/projects/bhagwati-belmonte.png") },
+  { id: 6,  title: "Bhagwati Belmonte",                       location: "Kasarvadavali, Thane",      status: "Delivered", image: asset("/projects/bhagwati-belmonte.jpg") },
   { id: 7,  title: "KIPL Morya Phase 1 & 2",                  location: "Kasarvadavali, Thane",      status: "Delivered", image: asset("/projects/kipl-morya.jpg") },
   { id: 9,  title: "Sai Heights",                             location: "Kalyan (E)",                status: "Delivered", image: asset("/projects/sai-heights.jpg") },
   { id: 13, title: "AK Hitec Prime Rose",                     location: "Pushpak Nagar",              status: "Delivered", image: asset("/projects/ak-hitec-prime-rose.jpg") },
@@ -85,11 +85,11 @@ const heroSlides = [
 ];
 
 const services = [
-  { id: 1, num: "01", title: "Housing & Commercial",  subtitle: "Property Solutions",     image: asset("/cover1.png"),   bg: asset("/SERVICE1.png"),           tagline: "Smart Solutions. Stronger Investments. Better Communities.",  back: "We source, evaluate, and represent premium housing and commercial mandates across India's tier 1 cities with full exclusivity." },
-  { id: 2, num: "02", title: "Market Entry &",         subtitle: "Asset Management",       image: asset("/cover1.png"),  bg: asset("/SERVICE2.png"),            tagline: "Strategic Entry. Efficient Management. Maximum Value.",        back: "We guide clients through market entry strategy and manage real estate assets for maximum long term return." },
-  { id: 3, num: "03", title: "Outreach &",             subtitle: "Marketing Consultation", image: asset("/cover1.png"),  bg: asset("/SERVICE3.png"),            tagline: "Smart Outreach. Stronger Branding. Higher Impact.",            back: "Our dedicated marketing arm crafts bespoke outreach campaigns that place your property in front of the right buyers." },
-  { id: 4, num: "04", title: "Plot & Land",            subtitle: "Services",               image: asset("/cover1.png"),  bg: asset("/SERVICE4.png"),            tagline: "Right Land. Right Value. Right Future.",                      back: "From agricultural plots to development land, we identify, verify, and negotiate land mandates across every geography." },
-  { id: 5, num: "05", title: "Financial",              subtitle: "Consultation Services",  image: asset("/cover1.png"),  bg: asset("/SERVICE5.png"),            tagline: "Right Advice. Better Finance. Stronger Growth.",              back: "Our financial advisory team structures deals, arranges financing, and ensures every mandate closes with optimal returns." },
+  { id: 1, num: "01", title: "Housing & Commercial",  subtitle: "Property Solutions",     image: asset("/cover1.png"),   bg: asset("/SERVICE1.jpg"),           tagline: "Smart Solutions. Stronger Investments. Better Communities.",  back: "We source, evaluate, and represent premium housing and commercial mandates across India's tier 1 cities with full exclusivity." },
+  { id: 2, num: "02", title: "Market Entry &",         subtitle: "Asset Management",       image: asset("/cover1.png"),  bg: asset("/SERVICE2.jpg"),            tagline: "Strategic Entry. Efficient Management. Maximum Value.",        back: "We guide clients through market entry strategy and manage real estate assets for maximum long term return." },
+  { id: 3, num: "03", title: "Outreach &",             subtitle: "Marketing Consultation", image: asset("/cover1.png"),  bg: asset("/SERVICE3.jpg"),            tagline: "Smart Outreach. Stronger Branding. Higher Impact.",            back: "Our dedicated marketing arm crafts bespoke outreach campaigns that place your property in front of the right buyers." },
+  { id: 4, num: "04", title: "Plot & Land",            subtitle: "Services",               image: asset("/cover1.png"),  bg: asset("/SERVICE4.jpg"),            tagline: "Right Land. Right Value. Right Future.",                      back: "From agricultural plots to development land, we identify, verify, and negotiate land mandates across every geography." },
+  { id: 5, num: "05", title: "Financial",              subtitle: "Consultation Services",  image: asset("/cover1.png"),  bg: asset("/SERVICE5.jpg"),            tagline: "Right Advice. Better Finance. Stronger Growth.",              back: "Our financial advisory team structures deals, arranges financing, and ensures every mandate closes with optimal returns." },
 ];
 
 export default function Home() {
