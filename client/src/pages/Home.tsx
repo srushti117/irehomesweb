@@ -21,13 +21,15 @@ interface Property {
   status: "Ongoing" | "Delivered";
   image: string;
   featured?: boolean;
+  /** "contain" shows the full photo (zoomed out) on a blurred backdrop instead of cropping it to fill the card — use for portrait photos where cover-cropping cuts off the top/bottom of the building. */
+  fit?: "contain";
 }
 
 const properties: Property[] = [
-  { id: 1,  title: "Sarvoday Marvel",                        location: "Kalyan (W)",                status: "Ongoing",   image: asset("/projects/sarvoday-marvel.jpg"),            featured: true },
+  { id: 1,  title: "Sarvoday Marvel",                        location: "Kalyan (W)",                status: "Ongoing",   image: asset("/projects/sarvoday-marvel.jpg"),            featured: true, fit: "contain" },
   { id: 2,  title: "Haware Jackpot",                          location: "Thane, Ghodbunder Road",    status: "Ongoing",   image: asset("/projects/haware-jackpot.jpg") },
   { id: 3,  title: "Haware Spectrum",                         location: "Thane, Ghodbunder Road",    status: "Ongoing",   image: asset("/projects/haware-spectrum.jpg") },
-  { id: 6,  title: "Bhagwati Belmonte",                       location: "Kasarvadavali, Thane",      status: "Delivered", image: asset("/projects/bhagwati-belmonte.jpg") },
+  { id: 6,  title: "Bhagwati Belmonte",                       location: "Kasarvadavali, Thane",      status: "Delivered", image: asset("/projects/bhagwati-belmonte.jpg"), fit: "contain" },
   { id: 7,  title: "KIPL Morya Phase 1 & 2",                  location: "Kasarvadavali, Thane",      status: "Delivered", image: "" },
   { id: 9,  title: "Sai Heights",                             location: "Kalyan (E)",                status: "Delivered", image: "" },
   { id: 13, title: "AK Hitec Prime Rose",                     location: "Pushpak Nagar",              status: "Delivered", image: asset("/projects/ak-hitec-prime-rose.jpg") },
@@ -375,7 +377,14 @@ export default function Home() {
                   }}
                 >
                   {property.image ? (
-                    <img src={property.image} alt={property.title} className="fan-carousel-img" />
+                    property.fit === "contain" ? (
+                      <div className="fan-carousel-img fan-carousel-img-contain-wrap">
+                        <img src={property.image} alt="" aria-hidden="true" className="fan-carousel-img-backdrop" />
+                        <img src={property.image} alt={property.title} className="fan-carousel-img-contained" />
+                      </div>
+                    ) : (
+                      <img src={property.image} alt={property.title} className="fan-carousel-img" />
+                    )
                   ) : (
                     <div
                       className="fan-carousel-img"

@@ -471,6 +471,33 @@
     pointer-events: none;
   }
 
+  /* Portrait photos: full building on a blurred backdrop of itself, instead
+     of cropping the top/bottom off to fill a square-ish card. */
+  .fan-carousel-img-contain-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .fan-carousel-img-backdrop {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(28px) brightness(0.55);
+    transform: scale(1.15);
+    pointer-events: none;
+  }
+
+  .fan-carousel-img-contained {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    pointer-events: none;
+  }
+
   .fan-carousel-gradient {
     position: absolute;
     inset: 0;
